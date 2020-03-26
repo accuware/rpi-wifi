@@ -151,11 +151,12 @@ iface ap0 inet static
     address ${AP_IP}
     netmask 255.255.255.0
     hostapd /etc/hostapd/hostapd.conf
-
 allow-hotplug wlan0
 iface wlan0 inet manual
     wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 iface AP1 inet dhcp
+post-up iw ap0 set power_save off
+post-up iw wlan0 set power_save off
 EOF
 
 # Populate `/bin/start_wifi.sh`
