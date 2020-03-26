@@ -5,6 +5,6 @@
 
 ## Usage
 ```
-curl https://raw.githubusercontent.com/accuware/rpi-wifi/master/configure | bash -s -- -a MyAP myappass -c WifiSSID wifipass
+curl https://raw.githubusercontent.com/accuware/rpi-wifi/master/configure | bash -s -- -a AP-SSID ap-pass -c Client-SSID client-pass
 
 ```
