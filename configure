@@ -126,7 +126,7 @@ EOF
 
 # Populate `/etc/wpa_supplicant/wpa_supplicant.conf`
 sudo bash -c 'cat > /etc/wpa_supplicant/wpa_supplicant.conf' << EOF
-country=US
+country=DE
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 
@@ -155,8 +155,8 @@ allow-hotplug wlan0
 iface wlan0 inet manual
     wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 iface AP1 inet dhcp
-#post-up iw ap0 set power_save off
-#post-up iw wlan0 set power_save off
+post-up iw ap0 set power_save off
+post-up iw wlan0 set power_save off
 EOF
 
 # Populate `/bin/start_wifi.sh`
@@ -189,7 +189,7 @@ sudo chmod +x /bin/rpi-wifi.sh
 # EOF
 # sudo systemctl daemon-reload
 # sudo systemctl enable rpi-wifi.service
-crontab -l | { cat; echo "@reboot /bin/rpi-wifi.sh"; } | crontab -
+EDITOR=nano crontab -l | { cat; echo "@reboot /bin/rpi-wifi.sh"; } | crontab -
 
 # Finish
 echo "Wifi configuration is finished! Please reboot your Raspberry Pi to apply changes..."
