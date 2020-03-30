@@ -190,7 +190,7 @@ sudo chmod +x /bin/rpi-wifi.sh
 # sudo systemctl daemon-reload
 # sudo systemctl enable rpi-wifi.service
 
-export EDITOR="nano"
+export EDITOR=nano
 crontab -l | { cat; echo "@reboot /bin/rpi-wifi.sh"; } |  crontab -
 
 # Finish
