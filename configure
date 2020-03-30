@@ -155,14 +155,14 @@ allow-hotplug wlan0
 iface wlan0 inet manual
     wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 iface AP1 inet dhcp
-post-up iw ap0 set power_save off
-post-up iw wlan0 set power_save off
+#post-up iw ap0 set power_save off
+#post-up iw wlan0 set power_save off
 EOF
 
 # Populate `/bin/start_wifi.sh`
 sudo bash -c 'cat > /bin/rpi-wifi.sh' << EOF
 echo 'Starting Wifi AP and client...'
-sleep 300
+#sleep 30
 sudo ifdown --force wlan0
 sudo ifdown --force ap0
 sudo ifup ap0
@@ -189,7 +189,8 @@ sudo chmod +x /bin/rpi-wifi.sh
 # EOF
 # sudo systemctl daemon-reload
 # sudo systemctl enable rpi-wifi.service
-EDITOR=nano crontab -l | { cat; echo "@reboot /bin/rpi-wifi.sh"; } | crontab -
+sudo select editor
+crontab -l | { cat; echo "@reboot /bin/rpi-wifi.sh"; } | crontab -
 
 # Finish
 echo "Wifi configuration is finished! Please reboot your Raspberry Pi to apply changes..."
